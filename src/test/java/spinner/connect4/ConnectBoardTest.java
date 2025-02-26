@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConnectBoardTest
 {
 
-    private ConnectBoard board;
-
     public void insert()
     {
         ConnectBoard board = new ConnectBoard(7, 6);
