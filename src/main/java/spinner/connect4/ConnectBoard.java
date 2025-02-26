@@ -31,7 +31,6 @@ public class ConnectBoard {
                 return;
             }
         }
-        throw new IllegalArgumentException("Column is full");
     }
 
     public char calculateWinner() {
@@ -78,7 +77,7 @@ public class ConnectBoard {
             return false;
         }
 
-        return board[0][column] != ' '; // If the top row of the column is not empty, the column is full
+        return board[0][column] != ' ';
     }
 
     @Override

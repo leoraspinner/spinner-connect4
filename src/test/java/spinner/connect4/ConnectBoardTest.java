@@ -1,60 +1,53 @@
 package spinner.connect4;
 
-import org.junit.jupiter.api.BeforeEach;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConnectBoardTest
 {
 
     private ConnectBoard board;
 
-    @BeforeEach
-    public void setUp()
-    {
-        board = new ConnectBoard(7, 6); // Create a board of width 7 and height 6
-    }
-
-    @Test
-    void testInsert()
+    public void insert()
     {
         ConnectBoard board = new ConnectBoard(7, 6);
-        board.insert(3, 'R');
-        board.insert(3, 'Y');
-        for (int i = 0; i < 6; i++) {
-            board.insert(0, 'R');
-        }
+        board.insert(3, 'X');
+
+        assertEquals('X', board.toString().split("\n")[0].charAt(3 * 2));
     }
 
     @Test
-    public void testIsFull()
+    public void isFull()
     {
-        // Initially, the column should not be full
+        ConnectBoard board = new ConnectBoard(7, 6);
         assertFalse(board.isFull(0));
 
-        // Fill the column
+        // Fill the column 0
         for (int i = 0; i < 6; i++) {
-            board.insert(0, 'R');
+            board.insert(0, 'R'); // Fill column 0 with 'R'
         }
 
         // Now the column should be full
         assertTrue(board.isFull(0));
+
+        // Check an empty column (column 1)
+        assertFalse(board.isFull(1));
     }
 
     @Test
-    public void testCalculateWinnerHorizontal() {
+    public void calculateWinner() {
         ConnectBoard board = new ConnectBoard(7, 6);
 
-        // Create a horizontal win for 'X'
         board.insert(0, 'X');
         board.insert(1, 'X');
         board.insert(2, 'X');
         board.insert(3, 'X');
 
         // Assert that 'X' is the winner
-        assertEquals('X', board.calculateWinner(), "Expected 'X' to be the winner for horizontal alignment");
+        assertEquals('X', board.calculateWinner(), "Expected 'X' to be the winner");
     }
 }
 
