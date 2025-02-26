@@ -12,14 +12,19 @@ public class ConnectBoard
             this.board = new char[height][width];
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    board[i][j] = ' '; // Initialize the board with empty spaces
+                    board[i][j] = ' ';
                 }
             }
         }
 
         public void insert(int column, char color) {
             if (column < 0 || column >= width) {
-                throw new IllegalArgumentException("Column out of bounds");
+                System.out.println("Column is out of bounds");
+                return;
+            }
+            if (isFull(column)){
+                System.out.println("Column is full");
+                return;
             }
             for (int row = height - 1; row >= 0; row--) {
                 if (board[row][column] == ' ') {
@@ -30,56 +35,57 @@ public class ConnectBoard
             throw new IllegalArgumentException("Column is full");
         }
 
-        public char calculateWinner() {
-            for (int row = 0; row < height; row++) {
-                for (int col = 0; col < width - 3; col++) {
-                    char color = board[row][col];
-                    if (color != ' '
-                            && color == board[row][col + 1]
-                            && color == board[row][col + 2]
-                            && color == board[row][col + 3]) {
-                        return color;
 
-                }
-            }
 
+    public char calculateWinner() {
+        for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                for (int row = 0; row < height - 3; row++) {
-                    char color = board[row][col];
-                    if (color != ' ' && color == board[row + 1][col] && color == board[row + 2][col] && color == board[row + 3][col]) {
+                char color = board[col][row];
+                if (color != ' ') {
+                    // Horizontal check
+                    if (col + 3 < width
+                            && color == board[col + 1][row]
+                            && color == board[col + 2][row]
+                            && color == board[col + 3][row]) {
+                        return color;
+                    }
+                    // Vertical check
+                    if (row + 3 < height
+                            && color == board[col][row + 1]
+                            && color == board[col][row + 2]
+                            && color == board[col][row + 3]) {
+                        return color;
+                    }
+                    // Diagonal down-right check
+                    if (col + 3 < width && row + 3 < height
+                            && color == board[col + 1][row + 1]
+                            && color == board[col + 2][row + 2]
+                            && color == board[col + 3][row + 3]) {
+                        return color;
+                    }
+                    // Diagonal up-right check
+                    if (col + 3 < width && row - 3 >= 0
+                            && color == board[col + 1][row - 1]
+                            && color == board[col + 2][row - 2]
+                            && color == board[col + 3][row - 3]) {
                         return color;
                     }
                 }
             }
-
-            for (int row = 3; row < height; row++) {
-                for (int col = 0; col < width - 3; col++) {
-                    char color = board[row][col];
-                    if (color != ' ' && color == board[row - 1][col + 1] && color == board[row - 2][col + 2] && color == board[row - 3][col + 3]) {
-                        return color;
-                    }
-                }
-            }
-            for (int row = 0; row < height - 3; row++) {
-                for (int col = 0; col < width - 3; col++) {
-                    char color = board[row][col];
-                    if (color != ' ' && color == board[row + 1][col + 1] && color == board[row + 2][col + 2] && color == board[row + 3][col + 3]) {
-                        return color;
-                    }
-                }
-            }
-
-            return ' '; // No winner
         }
+        return ' '; // No winner
+    }
 
-        public boolean isFull(int column) {
+
+    public boolean isFull(int column) {
             if (column < 0 || column >= width) {
-                throw new IllegalArgumentException("Column out of bounds");
+            return false;
             }
             return board[0][column] != ' '; // If the top row of the column is not empty, the column is full
         }
 
-        @Override
+
+    @Override
         public String toString() {
             StringBuilder sb = new StringBuilder();
             for (int row = 0; row < height; row++) {

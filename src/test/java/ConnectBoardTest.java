@@ -18,7 +18,9 @@ public class ConnectBoardTest {
         ConnectBoard board = new ConnectBoard(7, 6);
         board.insert(3, 'R');
         board.insert(3, 'Y');
-        for (int i = 0; i < 6; i++) board.insert(0, 'R');
+        for (int i = 0; i < 6; i++) {
+            board.insert(0, 'R');
+        }
     }
 
     @Test
