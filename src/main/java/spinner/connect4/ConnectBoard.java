@@ -1,13 +1,11 @@
 package spinner.connect4;
 
-public class ConnectBoard
-{
+public class ConnectBoard {
     private int width;
     private int height;
     private char[][] board;
 
-    public ConnectBoard(int width, int height)
-    {
+    public ConnectBoard(int width, int height) {
         this.width = width;
         this.height = height;
         this.board = new char[height][width];
@@ -18,8 +16,7 @@ public class ConnectBoard
         }
     }
 
-    public void insert(int column, char color)
-    {
+    public void insert(int column, char color) {
         if (column < 0 || column >= width) {
             System.out.println("Column is out of bounds");
             return;
@@ -37,12 +34,11 @@ public class ConnectBoard
         throw new IllegalArgumentException("Column is full");
     }
 
-
     public char calculateWinner() {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 char color = board[col][row];
-                if (color != ' ') { // Add braces here
+                if (color != ' ') { // Ensure this if statement has braces
                     // Horizontal check
                     if (col + 3 < width
                             && color == board[col + 1][row]
@@ -76,18 +72,16 @@ public class ConnectBoard
         }
         return ' '; // No winner
     }
-    public boolean isFull(int column)
-    {
+
+    public boolean isFull(int column) {
         if (column < 0 || column >= width) {
             return false;
         }
         return board[0][column] != ' '; // If the top row of the column is not empty, the column is full
     }
 
-
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -101,5 +95,4 @@ public class ConnectBoard
         }
         return sb.toString();
     }
-
 }
