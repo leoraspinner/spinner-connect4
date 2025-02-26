@@ -12,9 +12,10 @@ class ConnectBoardTest {
         for (int i = 0; i < 6; i++) { board.insert(0, 'R');
     }
 
-        @Test
-        void testCalculateWinner() {
+    @Test
+    void testCalculateWinner() {
             ConnectBoard board = new ConnectBoard(7, 6);
+        }
             assertEquals(0, board.calculateWinner());
 
             // Horizontal win
