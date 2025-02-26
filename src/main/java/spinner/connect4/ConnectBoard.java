@@ -77,6 +77,7 @@ public class ConnectBoard {
         if (column < 0 || column >= width) {
             return false;
         }
+
         return board[0][column] != ' '; // If the top row of the column is not empty, the column is full
     }
 
@@ -86,7 +87,9 @@ public class ConnectBoard {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 sb.append(board[row][col]);
-                if (col < width - 1) sb.append("|");
+                if (col < width - 1) {
+                    sb.append("|");
+                }
             }
             sb.append("\n");
             if (row < height - 1) {
