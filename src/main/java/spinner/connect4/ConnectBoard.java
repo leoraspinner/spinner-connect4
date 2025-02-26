@@ -6,7 +6,8 @@ public class ConnectBoard
         private int height;
         private char[][] board;
 
-        public ConnectBoard(int width, int height) {
+        public ConnectBoard(int width, int height)
+        {
             this.width = width;
             this.height = height;
             this.board = new char[height][width];
@@ -22,7 +23,7 @@ public class ConnectBoard
                 System.out.println("Column is out of bounds");
                 return;
             }
-            if (isFull(column)){
+            if (isFull(column)) {
                 System.out.println("Column is full");
                 return;
             }
