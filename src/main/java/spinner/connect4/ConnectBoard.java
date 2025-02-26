@@ -42,7 +42,7 @@ public class ConnectBoard
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 char color = board[col][row];
-                if (color != ' ') {
+                if (color != ' ') { // Add braces here
                     // Horizontal check
                     if (col + 3 < width
                             && color == board[col + 1][row]
@@ -76,7 +76,6 @@ public class ConnectBoard
         }
         return ' '; // No winner
     }
-
     public boolean isFull(int column)
     {
         if (column < 0 || column >= width) {
