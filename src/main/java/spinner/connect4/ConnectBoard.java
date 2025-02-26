@@ -18,7 +18,8 @@ public class ConnectBoard
         this.board = new char[height][width];
     }
 
-    public void Insert (int column, char color){
+    public void insert(int column, char color)
+    {
         for (int row = height - 1; row >= 0; row--) {
             if (board[row][column] == 0) {
                 board[row][column] = color;
@@ -27,12 +28,13 @@ public class ConnectBoard
         }
     }
 
-    public char CalculateWinner() {
+    public char calculateWinner() {
         for (int r = 0; r < height; r++) {
             for (int c = 0; c < width; c++) {
                 char color = board[r][c];
                 if (color != 0) {
-                    if (checkWin(r, c, 0, 1) || checkWin(r, c, 1, 0) ||
+                    if (checkWin(r, c, 0, 1)
+                            || checkWin(r, c, 1, 0) ||
                             checkWin(r, c, 1, 1) || checkWin(r, c, 1, -1)) {
                         return color;
                     }
@@ -53,7 +55,7 @@ public class ConnectBoard
         return true;
     }
 
-    public boolean IsFull(int column) {
+    public boolean isFull(int column) {
         return board[0][column] != 0;
     }
 
