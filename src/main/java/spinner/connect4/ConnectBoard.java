@@ -37,7 +37,8 @@ public class ConnectBoard
                     if (color != ' '
                             && color == board[row][col + 1]
                             && color == board[row][col + 2]
-                            && color == board[row][col + 3]) {return color;
+                            && color == board[row][col + 3]) {
+                        return color;
                     }
                 }
             }
