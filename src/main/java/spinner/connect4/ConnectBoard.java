@@ -39,7 +39,7 @@ public class ConnectBoard
                             && color == board[row][col + 2]
                             && color == board[row][col + 3]) {
                         return color;
-                    }
+
                 }
             }
 
