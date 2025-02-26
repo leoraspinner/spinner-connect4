@@ -1,3 +1,4 @@
+package spinner.connect4;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spinner.connect4.ConnectBoard;
