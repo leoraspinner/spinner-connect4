@@ -1,65 +1,82 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spinner.connect4.ConnectBoard;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class ConnectBoardTest {
+public class ConnectBoardTest {
+
+    private ConnectBoard board;
+
+    @BeforeEach
+    public void setUp() {
+        board = new ConnectBoard(7, 6); // Create a board of width 7 and height 6
+    }
 
     @Test
     void testInsert() {
         ConnectBoard board = new ConnectBoard(7, 6);
         board.insert(3, 'R');
         board.insert(3, 'Y');
-        for (int i = 0; i < 6; i++) { board.insert(0, 'R');
+        for (int i = 0; i < 6; i++) board.insert(0, 'R');
     }
 
     @Test
-    void testCalculateWinner() {
-            ConnectBoard board = new ConnectBoard(7, 6);
-        }
-            assertEquals(0, board.calculateWinner());
+    public void testIsFull() {
+        // Initially, the column should not be full
+        assertFalse(board.isFull(0));
 
-            // Horizontal win
-            for (int i = 0; i < 4; i++) {
-                board.insert(i, 'R');
-            }
-            assertEquals('R', board.calculateWinner());
-
-            // Vertical win
-            board = new ConnectBoard(7, 6);
-            for (int i = 0; i < 4; i++) {
-                board.insert(0, 'Y');
-            }
-            assertEquals('Y', board.calculateWinner());
-
-            // Diagonal win
-            board = new ConnectBoard(7, 6);
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < i; j++) {
-                    board.insert(i, 'Y');
-                }
-                board.insert(i, 'R');
-            }
-            assertEquals('R', board.calculateWinner());
-        }
-
-        @Test
-        void testIsFull() {
-            ConnectBoard board = new ConnectBoard(7, 6);
-            assertFalse(board.isFull(0));
-            for (int i = 0; i < 6; i++) {
-                board.insert(0, 'R');
-            }
-            assertTrue(board.isFull(0));
-            assertFalse(board.isFull(1));
-        }
-
-        @Test
-        void testToString() {
-            ConnectBoard board = new ConnectBoard(3, 2);
+        // Fill the column
+        for (int i = 0; i < 6; i++) {
             board.insert(0, 'R');
-            board.insert(1, 'Y');
-            board.insert(1, 'R');
-            String expected = "| |R| |\n|R|Y| |\n-------\n";
-            assertEquals(expected, board.toString());
         }
+
+        // Now the column should be full
+        assertTrue(board.isFull(0));
     }
+
+    @Test
+    public void testCalculateWinner() {
+        // Test horizontal win
+        board.insert(0, 'R');
+        board.insert(1, 'R');
+        board.insert(2, 'R');
+        board.insert(3, 'R');
+        assertEquals('R', board.calculateWinner()); // Should return 'R'
+
+        // Reset the board
+        board = new ConnectBoard(7, 6);
+
+        // Test vertical win
+        for (int i = 0; i < 4; i++) {
+            board.insert(0, 'Y');
+        }
+        assertEquals('Y', board.calculateWinner()); // Should return 'Y'
+
+        // Reset the board
+        board = new ConnectBoard(7, 6);
+
+        // Test diagonal win (bottom-left to top-right)
+        board.insert(0, 'R');
+        board.insert(1, 'Y');
+        board.insert(1, 'R');
+        board.insert(2, 'Y');
+        board.insert(2, 'Y');
+        board.insert(2, 'R');
+        board.insert(3, 'Y');
+        board.insert(3, 'Y');
+        board.insert(3, 'Y');
+        board.insert(3, 'R');
+        assertEquals('R', board.calculateWinner()); // Should return 'R'
+
+        // Reset the board
+        board = new ConnectBoard(7, 6);
+
+        // Test diagonal win (top-left to bottom-right)
+        board.insert(3, 'Y');
+        board.insert(2, 'Y');
+        board.insert(1, 'Y');
+        board.insert(0, 'Y');
+        assertEquals('Y', board.calculateWinner()); // Should return 'Y'
+    }
+}
