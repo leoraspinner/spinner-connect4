@@ -34,8 +34,10 @@ public class ConnectBoard
             for (int row = 0; row < height; row++) {
                 for (int col = 0; col < width - 3; col++) {
                     char color = board[row][col];
-                    if (color != ' ' && color == board[row][col + 1] && color == board[row][col + 2] && color == board[row][col + 3]) {
-                        return color;
+                    if (color != ' '
+                            && color == board[row][col + 1]
+                            && color == board[row][col + 2]
+                            && color == board[row][col + 3]) {return color;
                     }
                 }
             }
