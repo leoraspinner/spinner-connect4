@@ -42,15 +42,17 @@ public class ConnectBoardTest
     }
 
     @Test
-    public void calculateWinner()
-    {
+    public void testCalculateWinnerHorizontal() {
         ConnectBoard board = new ConnectBoard(7, 6);
+
+        // Create a horizontal win for 'X'
         board.insert(0, 'X');
         board.insert(1, 'X');
         board.insert(2, 'X');
         board.insert(3, 'X');
 
-        assertEquals(Character.valueOf('X'), board.calculateWinner());
+        // Assert that 'X' is the winner
+        assertEquals('X', board.calculateWinner(), "Expected 'X' to be the winner for horizontal alignment");
     }
 }
 
