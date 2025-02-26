@@ -38,8 +38,7 @@ public class ConnectBoard
     }
 
 
-    public Character calculateWinner()
-    {
+    public char calculateWinner() {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 char color = board[col][row];
@@ -77,7 +76,6 @@ public class ConnectBoard
         }
         return ' '; // No winner
     }
-
 
     public boolean isFull(int column)
     {
