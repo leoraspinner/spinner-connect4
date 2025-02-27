@@ -14,7 +14,7 @@ public class ConnectBoardTest
         ConnectBoard board = new ConnectBoard(7, 6);
         board.insert(3, 'X');
 
-        assertEquals('X', board.toString().split("\n")[0].charAt(3 * 2));
+        assertEquals('X', board.getBoard()[5][3]);
     }
 
     @Test
