@@ -79,6 +79,7 @@ public class ConnectBoard {
 
         return board[0][column] != ' ';
     }
+
     char[][] getBoard() {
         return board;
     }
